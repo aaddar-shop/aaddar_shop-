@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AADDAR SHOP | قريباً</title>
+    
+    <!-- جلب الخط العربي أنيق -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة الأيقونات -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* المتغيرات اللونية والتصميم الأساسي */
+        :root {
+            --bg-color: #0a0f0d; /* أخضر غامق جداً يقترب من الأسود */
+            --bg-secondary: #141c19;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --accent-gold: #d4af37; /* لون ذهبي فاخر */
+            --accent-gold-hover: #b5952f;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --font-main: 'Tajawal', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* الهيدر (رأس الصفحة) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 15, 13, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* قسم الهيرو (الرئيسي) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, #1a2621 0%, var(--bg-color) 70%);
+            padding: 0 1rem;
+        }
+
+        /* تأثير الخلفية الضبابي */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://picsum.photos/seed/luxurytexture/1920/1080');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+            animation: fadeIn Up 1.5s ease-out;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--accent-gold);
+            border-radius: 50px;
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent-gold);
+            display: block;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        /* نموذج الاشتراك */
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-glass);
+            background: var(--glass);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .subscribe-form input:focus {
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .subscribe-form button {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            background: var(--accent-gold);
+            color: #000;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-main);
+        }
+
+        .subscribe-form button:hover {
+            background: var(--accent-gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* قسم المميزات */
+        .features {
+            padding: 5rem 5%;
+            background-color: var(--bg-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-glass);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* قسم التشويق (صور المنتجات) */
+        .teaser {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 400px; /* تم زيادة الارتفاع قليلاً لتناسب الصور */
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* لضمان ملء الصورة للمكان دون تشويه */
+            transition: transform 0.5s ease;
+            filter: grayscale(80%); /* صور رمادية لتعزيز الغموض */
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay span {
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* العداد التنازلي (تقريبي) */
+        .countdown-section {
+            padding: 4rem 5%;
+            text-align: center;
+            background: linear-gradient(45deg, #141c19, #0a0f0d);
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 100px;
+            border: 1px solid var(--border-glass);
+        }
+
+        .time-box .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            display: block;
+        }
+
+        .time-box .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* التذييل (Footer) */
+        footer {
+            background: #050706;
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border-glass);
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--glass);
+            margin: 0 5px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* التجاوب (Responsive) */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                display: none; /* يمكن إضافة جافاسكريبت لفتح القائمة هنا، لكن الاكتفاء بالتصميم البسيط */
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+            }
+
+            .subscribe-form input {
+                width: 100%;
+            }
+
+            .subscribe-form button {
+                width: 100%;
+            }
+        }
+
+        /* حركات بسيطة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <div class="logo">AADDAR <span>SHOP</span></div>
+        <nav>
+            <ul>
+                <li><a href="#hero">الرئيسية</a></li>
+                <li><a href="#features">من نحن</a></li>
+                <li><a href="#teaser">نظرة خاطفة</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="ri-menu-4-line"></i>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">الافتتاح قريباً</span>
+            <h1>فخامة تتجاوز <span>التوقعات</span></h1>
+            <p>نحن نعمل على تجميع أرقى المجموعات الحصرية لك. متجر يجمع بين الأناقة، الجودة، والذوق الرفيع. كن مستعداً لرحلة تسوق مختلفة.</p>
+            
+            <form class="subscribe-form" onsubmit="event.preventDefault(); alert('شكراً لاهتمامك! سنقوم بإعلامك بمجرد افتتاح المتجر.');">
+                <input type="email" placeholder="أدخل بريدك الإلكتروني للحصول على خصم الافتتاح" required>
+                <button type="submit">أعلني</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- قسم المميزات -->
+    <section id="features" class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="ri-vip-diamond-line feature-icon"></i>
+                <h3>منتجات حصرية</h3>
+                <p>نختار بعناية فائقة أندر القطع وأجودها لضمان حصولك على ما لا يمتلكه غيرك.</p>
+            </div>
+            <div class="feature-card">
+                <i class="ri-shield-star-line feature-icon"></i>
+                <h3>جودة مضمونة</h3>
+                <p>الجودة هي معيارنا الأول. كل منتج يمر بفحص دقيق قبل وصوله إليك.</p>
+            </div>
+            <div class="feature-card">
+                <i class="ri-customer-service-2-line feature-icon"></i>
+                <h3>خدمة VIP</h3>
+                <p>فريق دعم متخصص جاهز لتلبية طلباتك وتقديم تجربة عملاء استثنائية.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التشويق البصري -->
+    <section id="teaser" class="teaser">
+        <h2 class="section-title">لمحات من عالمنا</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">نظرة سريعة على ما سيتم طرحه قريباً</p>
+        
+        <div class="gallery">
+            <!-- إكسسوارات راقية -->
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/nJkrFfb/Gemini-Generated-Image-5avvzm5avvzm5avv-1.jpg" alt="إكسسوارات راقية">
+                <div class="overlay"><span>إكسسوارات راقية</span></div>
+            </div>
+            
+            <!-- عطور فريدة -->
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/35DqFX8w/Gemini-Generated-Image-d05xn2d05xn2d05x-1.jpg" alt="عطور فريدة">
+                <div class="overlay"><span>عطور فريدة</span></div>
+            </div>
+            
+            <!-- أزياء عصرية -->
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/hRyRb5NC/Gemini-Generated-Image-m7u4ram7u4ram7u4-1.jpg" alt="أزياء عصرية">
+                <div class="overlay"><span>أزياء عصرية</span></div>
+            </div>
+            
+            <!-- صورة الديكور تمت إزالتها كما طلبت -->
+        </div>
+    </section>
+
+    <!-- عداد الافتتاح -->
+    <section class="countdown-section">
+        <h2 class="section-title">الوقت المتبقي على الافتتاح</h2>
+        <div class="countdown-timer">
+            <div class="time-box">
+                <span class="number">05</span>
+                <span class="label">أيام</span>
+            </div>
+            <div class="time-box">
+                <span class="number">12</span>
+                <span class="label">ساعات</span>
+            </div>
+            <div class="time-box">
+                <span class="number">45</span>
+                <span class="label">دقيقة</span>
+            </div>
+            <div class="time-box">
+                <span class="number">30</span>
+                <span class="label">ثانية</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer id="contact">
+        <div class="logo" style="margin-bottom: 1.5rem;">AADDAR <span>SHOP</span></div>
+        
+        <div class="social-links">
+            <a href="#"><i class="ri-instagram-line"></i></a>
+            <a href="#"><i class="ri-twitter-x-line"></i></a>
+            <a href="#"><i class="ri-whatsapp-line"></i></a>
+            <a href="#"><i class="ri-mail-send-line"></i></a>
+        </div>
+        
+        <p class="footer-text">
+            جميع الحقوق محفوظة &copy; 2023 AADDAR SHOP.<br>
+            نصمم المستقبل بلمسة من الفخامة.
+        </p>
+    </footer>
+
+</body>
+</html>
